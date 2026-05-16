@@ -1,26 +1,337 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Travel Territory — дизайн-система светлого travel-сервиса
+   ============================================================ */
+
+@theme {
+  --color-deep-navy: #f3fbf6;
+  --color-midnight: #e4f5ec;
+  --color-ocean: #1098ad;
+  --color-turquoise: #11865d;
+  --color-sky: #38a7d8;
+  --color-sunset: #f97316;
+  --color-sand: #e2a238;
+  --color-cream: #10251d;
+  --color-graphite: #22332b;
+  --color-muted: #60756c;
+  --color-success: #16a34a;
+
+  --shadow-glow-ocean: 0 24px 60px -28px rgba(16, 152, 173, 0.45);
+  --shadow-glow-sun: 0 24px 60px -28px rgba(249, 115, 22, 0.45);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+  --font-display: var(--font-montserrat), var(--font-manrope), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* -------------------- База -------------------- */
+
+* {
+  min-width: 0;
+}
+
+html {
+  scroll-padding-top: 6.5rem;
+  overflow-x: clip;
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    linear-gradient(180deg, rgba(225, 248, 237, 0.78), transparent 28rem),
+    #f3fbf6;
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.06;
+}
+
+::selection {
+  background: rgba(17, 134, 93, 0.24);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-turquoise);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #e4f5ec;
+}
+::-webkit-scrollbar-thumb {
+  background: #9fd8c2;
+  border-radius: 999px;
+  border: 2px solid #e4f5ec;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6fbea2;
+}
+
+/* -------------------- Контейнер / раскладка -------------------- */
+
+.tt-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.15rem, 4vw, 2.75rem);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* -------------------- Стекло / поверхности -------------------- */
+
+.glass {
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(17, 134, 93, 0.13);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glass-card {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(242, 251, 246, 0.72)
+  );
+  border: 1px solid rgba(17, 134, 93, 0.13);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 55px -34px rgba(15, 76, 55, 0.36);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(17, 134, 93, 0.14);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+.hairline {
+  border: 1px solid rgba(17, 134, 93, 0.12);
+}
+
+/* -------------------- Текст-градиенты -------------------- */
+
+.text-gradient {
+  background: linear-gradient(115deg, #0d8b61, #1098ad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-sun {
+  background: linear-gradient(115deg, #11865d, #38a7d8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* -------------------- Фоны / атмосфера -------------------- */
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(17, 134, 93, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 134, 93, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.bg-aurora {
+  background:
+    linear-gradient(135deg, rgba(216, 248, 232, 0.88), rgba(224, 246, 255, 0.58)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(243, 251, 246, 0.9));
+}
+
+.shadow-glow-ocean {
+  box-shadow: var(--shadow-glow-ocean);
+}
+.shadow-glow-sun {
+  box-shadow: var(--shadow-glow-sun);
+}
+
+/* -------------------- Анимации -------------------- */
+
+@keyframes tt-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes tt-float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+
+@keyframes tt-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(10px, -12px, 0);
+  }
+}
+
+@keyframes tt-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tt-dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+@keyframes tt-sheen {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  60%,
+  100% {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+
+@keyframes tt-pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes tt-price-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.42);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(249, 115, 22, 0);
+  }
+}
+
+@keyframes tt-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.anim-float {
+  animation: tt-float 6.5s ease-in-out infinite;
+}
+.anim-float-slow {
+  animation: tt-float-slow 9s ease-in-out infinite;
+}
+.anim-drift {
+  animation: tt-drift 11s ease-in-out infinite;
+}
+.anim-spin-slow {
+  animation: tt-spin-slow 44s linear infinite;
+}
+.anim-dash {
+  stroke-dasharray: 7 11;
+  animation: tt-dash 24s linear infinite;
+}
+.anim-pulse-glow {
+  animation: tt-pulse-glow 3.6s ease-in-out infinite;
+}
+.anim-price-pulse {
+  animation: tt-price-pulse 2.4s ease-out infinite;
+}
+.anim-marquee {
+  animation: tt-marquee 38s linear infinite;
+}
+
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 70%
+  );
+  transform: translateX(-130%) skewX(-18deg);
+  pointer-events: none;
+}
+.sheen:hover::after {
+  animation: tt-sheen 1.05s ease-in-out;
+}
+
+/* Плавный hover-лифт для карточек */
+.lift {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
+}
+
+/* -------------------- QA / reduced-motion заморозка -------------------- */
+
+[data-motion="off"] *,
+[data-motion="off"] *::before,
+[data-motion="off"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+[data-motion="off"] .sheen::after {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

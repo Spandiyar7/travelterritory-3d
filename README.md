@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Travel Territory — 3D travel website
 
-## Getting Started
+Премиальный скролл-управляемый 3D-сайт туристического агентства **Travel
+Territory** (Алматы). Вся главная страница построена вокруг единой 3D-сцены
+путешествия, которая трансформируется по мере прокрутки.
 
-First, run the development server:
+## Технологии
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 ·
+React Three Fiber + drei + three.js · Framer Motion · GSAP · Lenis · Zustand.
+
+## Запуск
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # продакшн-сборка
+npm run start      # запуск собранного сайта
+npm run lint       # ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Если порт 3000 занят** (например, другим процессом):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev -- -p 3001
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+(на Windows / PowerShell надёжнее: `npx next dev -p 3001`)
 
-## Learn More
+## Где что менять
 
-To learn more about Next.js, take a look at the following resources:
+| Что | Файл |
+| --- | --- |
+| Контакты, телефон, e-mail, адрес | `src/config/site.ts` |
+| Номер WhatsApp | `src/config/site.ts` → поле `whatsapp` |
+| Включить реальные фото | `src/config/site.ts` → `SHOW_PHOTOS = true` |
+| Направления / страны | `src/data/destinations.ts` |
+| Горящие туры (демо) | `src/data/hotTours.ts` |
+| Отзывы (демо) | `src/data/reviews.ts` |
+| Туроператоры | `src/data/tourOperators.ts` |
+| Навигация | `src/data/navigation.ts` |
+| FAQ | `src/data/faq.ts` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Фотографии
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Сайт по умолчанию показывает премиальные плейсхолдеры (без «битых» картинок).
+Чтобы подключить реальные фото:
 
-## Deploy on Vercel
+1. Положите файлы в `public/destinations/`, `public/hot-tours/`,
+   `public/hotels/`, `public/team/` — точные имена в `README.md` каждой папки.
+2. В `src/config/site.ts` установите `SHOW_PHOTOS = true`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 3D-модели
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Все 3D-объекты процедурные (собраны кодом, файлы не нужны). Чтобы заменить их
+на реальные GLB-модели — см. `public/models/README.md`.
+
+## Подключение реального API туров
+
+Сейчас `src/data/hotTours.ts` содержит **демо-предложения** (помечены `isDemo`).
+Замените массив `hotTours` данными из CRM / API туроператора, сохранив структуру
+типа `HotTour` (`src/types/tour.ts`). Карточки и фильтры подхватят данные.
+
+## Реальные отзывы
+
+`src/data/reviews.ts` содержит **демо-отзывы**. Замените их виджетом реальных
+отзывов (2ГИС / Google / Яндекс / Instagram) — место для виджета обозначено
+компонентом `ReviewsWidgetPlaceholder`.
+
+## Заявки
+
+Бэкенда нет: формы (`TourRequestForm`, `ContactForm`) формируют готовое
+сообщение и открывают **WhatsApp** или почтовый клиент. Онлайн-оплата и
+бронирование не подключены.
+
+## Деплой на Vercel
+
+1. Запушьте репозиторий на GitHub.
+2. На [vercel.com](https://vercel.com) → New Project → импортируйте репозиторий.
+3. Vercel сам определит Next.js — нажмите Deploy. Переменные окружения не нужны.
+
+## Визуальный QA
+
+См. `README_VISUAL_QA.md`. Кратко: `/visual-qa` — витрина компонентов,
+`/?qa=1&motion=off&scene=freeze` — замороженный режим для скриншотов.
