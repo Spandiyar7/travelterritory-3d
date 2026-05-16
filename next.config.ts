@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   output: isGithubPages ? "export" : undefined,
   basePath: isGithubPages && basePath ? basePath : undefined,
   assetPrefix: isGithubPages && basePath ? `${basePath}/` : undefined,
+  trailingSlash: isGithubPages ? true : undefined,
   // Корень Turbopack — папка проекта (исключаем влияние внешних lock-файлов).
   turbopack: { root: import.meta.dirname },
   images: {
