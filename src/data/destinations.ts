@@ -1,4 +1,5 @@
 import type { Destination } from "@/types/destination";
+import { publicAsset } from "@/lib/publicAsset";
 
 /**
  * Каталог направлений. Демо-контент: фото, цены и заметки по визам
@@ -11,7 +12,7 @@ export const destinations: Destination[] = [
     name: "Турция",
     country: "Турция",
     flag: "🇹🇷",
-    image: "/destinations/turkey.jpg",
+    image: publicAsset("/destinations/turkey.jpg"),
     shortDescription:
       "Море, «всё включено» и короткий перелёт — самый предсказуемый отдых для всей семьи.",
     longDescription:
@@ -38,7 +39,7 @@ export const destinations: Destination[] = [
     name: "ОАЭ",
     country: "Объединённые Арабские Эмираты",
     flag: "🇦🇪",
-    image: "/destinations/uae.jpg",
+    image: publicAsset("/destinations/uae.jpg"),
     shortDescription:
       "Премиальные отели, тёплое море зимой и шопинг мирового уровня в Дубае.",
     longDescription:
@@ -65,7 +66,7 @@ export const destinations: Destination[] = [
     name: "Таиланд",
     country: "Таиланд",
     flag: "🇹🇭",
-    image: "/destinations/thailand.jpg",
+    image: publicAsset("/destinations/thailand.jpg"),
     shortDescription:
       "Экзотика, тёплый океан и яркая природа — отдых, который запоминается надолго.",
     longDescription:
@@ -92,7 +93,7 @@ export const destinations: Destination[] = [
     name: "Египет",
     country: "Египет",
     flag: "🇪🇬",
-    image: "/destinations/egypt.jpg",
+    image: publicAsset("/destinations/egypt.jpg"),
     shortDescription:
       "Красное море, коралловые рифы и «всё включено» круглый год.",
     longDescription:
@@ -119,7 +120,7 @@ export const destinations: Destination[] = [
     name: "Вьетнам",
     country: "Вьетнам",
     flag: "🇻🇳",
-    image: "/destinations/vietnam.jpg",
+    image: publicAsset("/destinations/vietnam.jpg"),
     shortDescription:
       "Длинные пляжи, современные курорты и природа, от которой захватывает дух.",
     longDescription:
@@ -146,7 +147,7 @@ export const destinations: Destination[] = [
     name: "Мальдивы",
     country: "Мальдивы",
     flag: "🇲🇻",
-    image: "/destinations/maldives.jpg",
+    image: publicAsset("/destinations/maldives.jpg"),
     shortDescription:
       "Виллы над водой, белоснежный песок и абсолютное спокойствие океана.",
     longDescription:
@@ -173,7 +174,7 @@ export const destinations: Destination[] = [
     name: "Шри-Ланка",
     country: "Шри-Ланка",
     flag: "🇱🇰",
-    image: "/destinations/sri-lanka.jpg",
+    image: publicAsset("/destinations/sri-lanka.jpg"),
     shortDescription:
       "Океан, чайные плантации и древние города — пляж и экскурсии в одном туре.",
     longDescription:
@@ -200,7 +201,7 @@ export const destinations: Destination[] = [
     name: "Индонезия",
     country: "Индонезия (Бали)",
     flag: "🇮🇩",
-    image: "/destinations/indonesia.jpg",
+    image: publicAsset("/destinations/indonesia.jpg"),
     shortDescription:
       "Бали — остров с особой атмосферой: серф, рисовые террасы и стильные виллы.",
     longDescription:
@@ -227,7 +228,7 @@ export const destinations: Destination[] = [
     name: "Катар",
     country: "Катар",
     flag: "🇶🇦",
-    image: "/destinations/qatar.jpg",
+    image: publicAsset("/destinations/qatar.jpg"),
     shortDescription:
       "Современная роскошь Ближнего Востока: Доха, пустыня и тёплый залив.",
     longDescription:
@@ -254,7 +255,7 @@ export const destinations: Destination[] = [
     name: "Грузия",
     country: "Грузия",
     flag: "🇬🇪",
-    image: "/destinations/georgia.jpg",
+    image: publicAsset("/destinations/georgia.jpg"),
     shortDescription:
       "Близко, душевно и вкусно: горы, море Батуми и знаменитое гостеприимство.",
     longDescription:
@@ -281,7 +282,7 @@ export const destinations: Destination[] = [
     name: "Европа",
     country: "Европа",
     flag: "🇪🇺",
-    image: "/destinations/europe.jpg",
+    image: publicAsset("/destinations/europe.jpg"),
     shortDescription:
       "Экскурсии, архитектура и города мечты — путешествие за впечатлениями.",
     longDescription:
@@ -308,7 +309,7 @@ export const destinations: Destination[] = [
     name: "Казахстан",
     country: "Казахстан",
     flag: "🇰🇿",
-    image: "/destinations/kazakhstan.jpg",
+    image: publicAsset("/destinations/kazakhstan.jpg"),
     shortDescription:
       "Отдых рядом с домом: горы, озёра и курорты без долгих перелётов.",
     longDescription:
